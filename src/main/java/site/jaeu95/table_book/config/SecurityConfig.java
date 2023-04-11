@@ -28,13 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * configure
+     *
      * @param http
      * @throws Exception
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable() // swagger API 호출시 403 에러 발생 방지
+        http.csrf().disable() // swagger API 호출시 403 에러 발생 방지
                 .authorizeRequests()
                 .antMatchers(PERMIT_URL_ARRAY).permitAll()
                 .anyRequest().authenticated();
