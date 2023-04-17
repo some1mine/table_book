@@ -1,9 +1,11 @@
 package site.jaeu95.table_book.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import site.jaeu95.table_book.domain.form.SignUpForm;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +23,12 @@ public class Customer {
     @Column(nullable = false, unique = true)
     private String phone;
     private String password;
+    @OneToMany(mappedBy = "customer")
+    @JsonManagedReference
+    private List<Reservation> reservations;
+    @OneToMany
+    @JoinColumn(name = "customer_id")
+    private List<Review> reviews;
 
     public static Customer from(SignUpForm form) {
         return Customer.builder()

@@ -1,0 +1,101 @@
+### 회원가입 (고객)
+POST http://localhost:8080/signup/customer
+Content-Type: application/json
+
+{
+  "email": "parkjw573@naver.com",
+  "name": "myName",
+  "password": "pw",
+  "phone": "01000000000"
+}
+
+### 로그인 (고객)
+POST http://localhost:8080/signIn/customer
+Content-Type: application/json
+
+{
+  "password": "pw",
+  "phone": "01000000000"
+}
+
+### 회원 정보 조회 (고객)
+GET http://localhost:8080/customer/getInfo
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYUhWelZwUXRHOURlTnhpOFhGNUtnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxNzE5NDA5LCJleHAiOjE2ODE4MDU4MDl9.68cBuCtnthkSCPTIDRj3DIdPGd_fE_1SfryoWSsi7U0
+
+### 전체 매장 조회 (고객)
+GET http://localhost:8080/customer/getAllStores
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYUhWelZwUXRHOURlTnhpOFhGNUtnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxNzE5NDA5LCJleHAiOjE2ODE4MDU4MDl9.68cBuCtnthkSCPTIDRj3DIdPGd_fE_1SfryoWSsi7U0
+
+### 테이블 예약 (고객)
+POST http://localhost:8080/customer/bookTable
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJWS09iWVpjcXByTUFDN1RWYlVCbTR3PT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjgxNzIwNjc0LCJleHAiOjE2ODE4MDcwNzR9.kXFYvsYorZyz7frYNVqAceTOrK6k8Z2cFA5U1dStGqs
+
+{
+  "storeId": 1,
+  "tableId": 1,
+  "reservedAt": "2023-04-17 18:00:00"
+}
+
+### 회원가입 (점장)
+POST http://localhost:8080/signup/manager
+Content-Type: application/json
+
+{
+  "email": "parkjw573@naver.com",
+  "name": "myName",
+  "password": "pw",
+  "phone": "01000000000"
+}
+
+### 로그인 (점장)
+POST http://localhost:8080/signIn/manager
+Content-Type: application/json
+
+{
+  "password": "pw",
+  "phone": "01000000000"
+}
+
+### 회원 정보 조회 (점장)
+GET http://localhost:8080/manager/getInfo
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYUhWelZwUXRHOURlTnhpOFhGNUtnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6Ik1BTkFHRVIiLCJpYXQiOjE2ODE3MTk0MjYsImV4cCI6MTY4MTgwNTgyNn0.v-ZJAirPjOUT1dgEiyxAlKgRCcOQR8i6GDUuhnEhq3I
+
+### 매장 추가
+POST http://localhost:8080/manager/store
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYUhWelZwUXRHOURlTnhpOFhGNUtnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6Ik1BTkFHRVIiLCJpYXQiOjE2ODE3MTk0MjYsImV4cCI6MTY4MTgwNTgyNn0.v-ZJAirPjOUT1dgEiyxAlKgRCcOQR8i6GDUuhnEhq3I
+
+{
+  "manager_id": 1,
+  "name" : "testStore",
+  "lat" : 34.0,
+  "lnt": 127.0
+}
+
+### 매장 테이블 추가
+POST http://localhost:8080/manager/store/table
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYUhWelZwUXRHOURlTnhpOFhGNUtnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6Ik1BTkFHRVIiLCJpYXQiOjE2ODE3MTk0MjYsImV4cCI6MTY4MTgwNTgyNn0.v-ZJAirPjOUT1dgEiyxAlKgRCcOQR8i6GDUuhnEhq3I
+
+{
+  "storeId": 1,
+  "size" : 4
+}
+
+### 매장 조회
+GET http://localhost:8080/manager/store
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYUhWelZwUXRHOURlTnhpOFhGNUtnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6Ik1BTkFHRVIiLCJpYXQiOjE2ODE3MTk0MjYsImV4cCI6MTY4MTgwNTgyNn0.v-ZJAirPjOUT1dgEiyxAlKgRCcOQR8i6GDUuhnEhq3I
+
+{
+  "storeId" : 1
+}
+
+### 전체 매장 조회
+GET http://localhost:8080/manager/getMyStores
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYUhWelZwUXRHOURlTnhpOFhGNUtnPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6Ik1BTkFHRVIiLCJpYXQiOjE2ODE3MTk0MjYsImV4cCI6MTY4MTgwNTgyNn0.v-ZJAirPjOUT1dgEiyxAlKgRCcOQR8i6GDUuhnEhq3I

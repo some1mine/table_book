@@ -1,5 +1,6 @@
 package site.jaeu95.table_book.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import site.jaeu95.table_book.domain.form.SignUpForm;
@@ -25,7 +26,8 @@ public class Manager {
     private String password;
     @ColumnDefault(value = "true")
     private boolean isPartner;
-    @OneToMany
+    @OneToMany(mappedBy = "manager")
+    @JsonManagedReference
     private List<Store> stores;
 
     public static Manager from(SignUpForm form) {

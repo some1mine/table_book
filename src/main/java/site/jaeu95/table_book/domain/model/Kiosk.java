@@ -19,6 +19,7 @@ public class Kiosk {
     @OneToOne
     private Store store;
     @OneToMany
+    @JoinColumn(name = "kiosk_id")
     private List<Reservation> reservations;
 
 }

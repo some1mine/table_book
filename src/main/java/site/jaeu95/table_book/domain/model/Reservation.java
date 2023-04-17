@@ -1,6 +1,8 @@
 package site.jaeu95.table_book.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reservation {
@@ -19,8 +22,18 @@ public class Reservation {
     @OneToOne
     private Store store;
     @OneToOne
+    private Table table;
+    @ManyToOne
+    @JoinColumn(name = "kiosk_id")
     private Kiosk kiosk;
-    @OneToOne
+    @ManyToOne
+    @JsonBackReference
     private Customer customer;
     private LocalDateTime reservedTime;
+    @EqualsAndHashCode.Exclude
+    @ColumnDefault(value = "false")
+    private boolean expired;
+    @EqualsAndHashCode.Exclude
+    @ColumnDefault(value = "false")
+    private boolean checkOuted;
 }

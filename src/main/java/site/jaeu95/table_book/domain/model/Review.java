@@ -1,5 +1,6 @@
 package site.jaeu95.table_book.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +20,9 @@ public class Review {
     private String content;
     private Double rating;
     @ManyToOne
+    @JsonBackReference
     private Store store;
     @ManyToOne
+    @JsonBackReference
     private Customer customer;
 }

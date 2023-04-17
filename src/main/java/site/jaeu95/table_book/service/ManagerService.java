@@ -16,12 +16,21 @@ import java.util.Optional;
 public class ManagerService {
     private final ManagerRepository managerRepository;
 
+    public Optional<Manager> findByIdAndPhone(Long id, String phone) {
+        return managerRepository.findById(id).stream().filter(manager -> manager.getPhone().equals(phone)).findFirst();
+    }
+
     public Manager signup(SignUpForm form) {
         if (managerRepository.existsByPhone(form.getPhone())) {
             throw new CustomException(ErrorCode.USING_PHONE);
         } else {
             return managerRepository.save(Manager.from(form));
         }
+    }
+
+    public Optional<Manager> findValidManager(String phone, String password) {
+        return managerRepository.findByPhone(phone).stream().filter(manager -> manager.getPassword().equals(password))
+                .findFirst();
     }
     @Transactional
     public Manager makePartnerShip(Long managerId) {

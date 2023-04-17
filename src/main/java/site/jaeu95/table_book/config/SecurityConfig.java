@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String[] PERMIT_URL_ARRAY = {
+            "/**",
             /* swagger v2 */
             "/v2/api-docs",
             "/swagger-resources",
@@ -34,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable() // swagger API 호출시 403 에러 발생 방지
-                .authorizeRequests()
+        http.csrf().disable(); // swagger API 호출시 403 에러 발생 방지
+        http.authorizeRequests()
                 .antMatchers(PERMIT_URL_ARRAY).permitAll()
                 .anyRequest().authenticated();
     }
