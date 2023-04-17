@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * 점포를 추가하기 위한 Form 클래스입니다.
+ */
 @Getter
 @Builder
 @NoArgsConstructor

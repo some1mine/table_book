@@ -10,6 +10,9 @@ import site.jaeu95.table_book.domain.common.UserVo;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Jwt 인증을 위해 Token 을 발행하고, Token 을 통해 인증하기 위한 클래스입니다.
+ */
 public class JwtAuthenticationProvider {
     private final String secretKey = "secretKey";
     private final long tokenValidTime = 1000L * 60 * 60 * 24;

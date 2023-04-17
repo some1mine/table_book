@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * 매장 방문 처리를 위한 Form 클래스입니다.
+ */
 @Getter
 @Builder
 @EqualsAndHashCode

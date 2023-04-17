@@ -18,6 +18,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 테이블 정보 추가와 테이블의 예약, 그리고 예약취소 처리를 위한 서비스입니다.
+ */
 @Service
 @RequiredArgsConstructor
 public class TableService {
@@ -26,6 +29,11 @@ public class TableService {
     private final StoreRepository storeRepository;
     private final TableRepository tableRepository;
 
+    /**
+     *
+     * @param form
+     * @return 점포에 테이블을 추가하고 해당 점포 정보를 반환하는 메서드입니다.
+     */
     public Store addTableInStore(AddTableForm form) {
         Store store = storeRepository.findById(form.getStoreId())
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_STORE));
@@ -38,6 +46,13 @@ public class TableService {
 
         return store;
     }
+
+    /**
+     *
+     * @param customer
+     * @param form
+     * @return 고객의 요청으로 테이블을 예약하기 위한 메서드입니다. 예약정보 Entity 를 반환합니다.
+     */
     @Transactional
     public Reservation bookTable(Customer customer, BookTableForm form) {
         Store store = storeRepository.findById(form.getStoreId())
@@ -67,6 +82,9 @@ public class TableService {
         return reservation;
     }
 
+    /**
+     * 매분 0초마다 작동하는 기간이 지난 예약정보를 취소처리하기 위한 메서드입니다.
+     */
     @Transactional
     @Scheduled(cron = "0 * * * * *")
     public void refreshReservation() {

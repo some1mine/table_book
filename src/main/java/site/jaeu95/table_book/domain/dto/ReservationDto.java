@@ -6,6 +6,9 @@ import site.jaeu95.table_book.domain.model.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * 순환참조의 에러와 함께 예약 객체의 응답을 받아주기 위한 Dto 입니다.
+ */
 @Getter
 @Builder
 @ToString

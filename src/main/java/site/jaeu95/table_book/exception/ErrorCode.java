@@ -3,6 +3,10 @@ package site.jaeu95.table_book.exception;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+
+/**
+ * 에러 타입을 지정하기 위한 Enum 입니다.
+ */
 @RequiredArgsConstructor
 @Getter
 public enum ErrorCode {

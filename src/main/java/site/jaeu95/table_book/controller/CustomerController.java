@@ -20,6 +20,10 @@ import site.jaeu95.table_book.service.TableService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 고객으로부터 들어오는 요청을 받기 위한 Controller 입니다.
+ * 회원가입, 로그인은 별도의 컨트롤러를 만들었습니다.
+ */
 @RestController
 @RequestMapping("/customer")
 @RequiredArgsConstructor
@@ -29,6 +33,9 @@ public class CustomerController {
     private final TableService tableService;
     private final StoreService storeService;
 
+    /**
+     * 고객 자신의 정보를 가져오는 메서드입니다.
+     */
     @GetMapping("/getInfo")
     public ResponseEntity<CustomerDto> getInfo(@RequestHeader(name = "X-AUTH-TOKEN") String token) {
         UserVo userVo = provider.getUserVo(token);
@@ -37,6 +44,9 @@ public class CustomerController {
         return ResponseEntity.ok(CustomerDto.from(customer));
     }
 
+    /**
+     * 모든 점포의 정보를 불러오는 메서드입니다.
+     */
     @GetMapping("/getAllStores")
     public ResponseEntity<List<StoreDto>> getAllStores(@RequestHeader(name = "X-AUTH-TOKEN") String token) {
         UserVo userVo = provider.getUserVo(token);
@@ -45,6 +55,9 @@ public class CustomerController {
         return ResponseEntity.ok(storeService.getAllStores().stream().map(StoreDto::from).collect(Collectors.toList()));
     }
 
+    /**
+     * 테이블을 예약하는 메서드입니다.
+     */
     @PostMapping("/bookTable")
     public ResponseEntity<ReservationDto> bookTable(@RequestHeader(name = "X-AUTH-TOKEN") String token, @RequestBody BookTableForm form) {
         UserVo userVo = provider.getUserVo(token);
@@ -54,6 +67,9 @@ public class CustomerController {
         return ResponseEntity.ok(ReservationDto.from(tableService.bookTable(customer, form)));
     }
 
+    /**
+     * 방문처리를 하는 메서드입니다.
+     */
     @PostMapping("/visitTable")
     public ResponseEntity<ReservationDto> visitTable(@RequestHeader(name = "X-AUTH-TOKEN") String token, @RequestBody VisitTableForm form) {
         UserVo userVo = provider.getUserVo(token);

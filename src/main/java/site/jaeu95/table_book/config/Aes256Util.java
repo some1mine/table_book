@@ -7,6 +7,9 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * 잘 이해한 것은 아니나 암호화처리를 위해서 수업 중 한 내용을 참고했습니다.
+ */
 public class Aes256Util {
     public static String alg = "AES/CBC/PKCS5Padding";
     private static final String KEY = "ZEROBASEKEYISZEROBASEKEY";

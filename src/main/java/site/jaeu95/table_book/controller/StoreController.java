@@ -17,6 +17,9 @@ import site.jaeu95.table_book.service.ManagerService;
 import site.jaeu95.table_book.service.StoreService;
 import site.jaeu95.table_book.service.TableService;
 
+/**
+ * 단일 점포와 관련한 요청을 받는 Controller 입니다.
+ */
 @RestController
 @RequestMapping("/manager/store")
 @RequiredArgsConstructor
@@ -26,6 +29,9 @@ public class StoreController {
     private final ManagerService managerService;
     private final JwtAuthenticationProvider provider;
 
+    /**
+     * 점포를 추가하는 메서드입니다.
+     */
     @PostMapping
     public ResponseEntity<ManagerDto> addStore(@RequestHeader(name = "X-AUTH-TOKEN") String token, @RequestBody AddStoreForm form) {
         UserVo userVo = provider.getUserVo(token);
@@ -35,6 +41,9 @@ public class StoreController {
         return ResponseEntity.ok(ManagerDto.from(storeService.addStore(manager.getId(), form)));
     }
 
+    /**
+     * 테이블을 추가하는 메서드입니다.
+     */
     @PostMapping("/table")
     public ResponseEntity<StoreDto> addTableInStore(@RequestHeader(name = "X-AUTH-TOKEN") String token, @RequestBody AddTableForm form) {
         UserVo userVo = provider.getUserVo(token);
@@ -44,6 +53,9 @@ public class StoreController {
         return ResponseEntity.ok(StoreDto.from(tableService.addTableInStore(form)));
     }
 
+    /**
+     * 단일 점포의 정보를 조회하는 메서드입니다.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<StoreDto> getStoreInfo(@RequestHeader(name = "X-AUTH-TOKEN") String token, @PathVariable Long id) {
         UserVo userVo = provider.getUserVo(token);

@@ -7,6 +7,9 @@ import site.jaeu95.table_book.domain.form.SignUpForm;
 import site.jaeu95.table_book.domain.model.Customer;
 import site.jaeu95.table_book.domain.model.Manager;
 
+/**
+ * 회원 가입을 위한 서비스입니다.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor

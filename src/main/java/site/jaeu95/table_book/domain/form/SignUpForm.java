@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * 회원가입을 위한 Form 클래스입니다.
+ */
 @Getter
 @Builder
 @NoArgsConstructor

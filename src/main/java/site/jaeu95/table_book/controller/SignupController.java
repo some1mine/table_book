@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import site.jaeu95.table_book.domain.form.SignUpForm;
 import site.jaeu95.table_book.service.SignupService;
 
+/**
+ * 회원가입 컨드롤러입니다.
+ */
 @RestController
 @RequestMapping("/signup")
 @RequiredArgsConstructor

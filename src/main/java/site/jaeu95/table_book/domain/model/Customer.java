@@ -7,6 +7,9 @@ import site.jaeu95.table_book.domain.form.SignUpForm;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * 고객의 Entity 입니다. 순환참조 방지를 위해 JsonManagedReference 를 사용했습니다.
+ */
 @Entity
 @Getter
 @Setter

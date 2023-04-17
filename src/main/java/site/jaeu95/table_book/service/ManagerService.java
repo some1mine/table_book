@@ -11,6 +11,10 @@ import site.jaeu95.table_book.exception.ErrorCode;
 
 import java.util.Optional;
 
+/**
+ * 점장의 서비스입니다.
+ * 회원가입과 로그인, 그리고 개별 점포와 테이블의 처리를 위한 서비스를 따로 있습니다.
+ */
 @Service
 @RequiredArgsConstructor
 public class ManagerService {

@@ -10,6 +10,9 @@ import site.jaeu95.table_book.domain.model.Manager;
 import site.jaeu95.table_book.exception.CustomException;
 import site.jaeu95.table_book.exception.ErrorCode;
 
+/**
+ * 로그인을 위한 서비스입니다.
+ */
 @Service
 @RequiredArgsConstructor
 public class SignInService {

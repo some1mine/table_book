@@ -10,6 +10,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * 고객이 요청을 보내기 전 토큰을 통해서 인증하기 위한 Filter 입니다.
+ */
 @WebFilter(urlPatterns = "/customer/**")
 @RequiredArgsConstructor
 public class CustomerFilter implements Filter {

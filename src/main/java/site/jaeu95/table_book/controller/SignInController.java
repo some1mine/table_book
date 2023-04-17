@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import site.jaeu95.table_book.domain.form.SignInForm;
 import site.jaeu95.table_book.service.SignInService;
 
+/**
+ * 로그인 컨트롤러 입니다.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/signIn")

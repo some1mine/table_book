@@ -8,6 +8,11 @@ import site.jaeu95.table_book.domain.form.BookTableForm;
 
 import javax.persistence.*;
 
+
+/**
+ * 점포의 Entity 입니다. 순환참조 방지를 위해 JsonBackReference 를 사용했습니다.
+ */
+
 @Entity
 @Getter
 @Setter

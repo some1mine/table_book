@@ -5,6 +5,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * 리뷰의 Entity 를 만들어 두었습니다.
+ */
+
 @Entity
 @Getter
 @Setter

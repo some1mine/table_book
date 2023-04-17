@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * 점장이 요청을 보내기 전 토큰을 통해서 인증하기 위한 Filter 입니다.
+ */
 @WebFilter(urlPatterns = "/manager/**")
 @RequiredArgsConstructor
 public class ManagerFilter implements Filter {

@@ -6,6 +6,9 @@ import site.jaeu95.table_book.domain.model.Manager;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 순환참조의 에러와 함께 점장 객체의 응답을 받아주기 위한 Dto 입니다.
+ */
 @Getter
 @Builder
 @ToString
