@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class ManagerDto {
     private Long id;
     private String name;
+    private String email;
     private String phone;
     private List<StoreDto> stores;
 
@@ -25,6 +26,7 @@ public class ManagerDto {
         return ManagerDto.builder()
                 .id(manager.getId())
                 .name(manager.getName())
+                .email(manager.getEmail())
                 .phone(manager.getPhone())
                 .stores(stores)
                 .build();

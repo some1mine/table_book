@@ -2,6 +2,7 @@ package site.jaeu95.table_book.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+import site.jaeu95.table_book.domain.form.AddReviewForm;
 
 import javax.persistence.*;
 
@@ -29,4 +30,14 @@ public class Review {
     @ManyToOne
     @JsonBackReference
     private Customer customer;
+
+    public static Review from(Customer customer, Store store, AddReviewForm form) {
+        return Review.builder()
+                .title(form.getTitle())
+                .content(form.getContent())
+                .rating(form.getRating())
+                .store(store)
+                .customer(customer)
+                .build();
+    }
 }

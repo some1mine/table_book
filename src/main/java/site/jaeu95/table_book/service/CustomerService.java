@@ -72,8 +72,8 @@ public class CustomerService {
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_USER_RESERVATION));
 
 
-        reservation.setCheckOuted(true);
-        customer.getReservations().stream().filter(r -> r.equals(reservation)).collect(Collectors.toList()).forEach(r -> r.setCheckOuted(true));
+        reservation.setCheckedOuted(true);
+        customer.getReservations().stream().filter(r -> r.equals(reservation)).collect(Collectors.toList()).forEach(r -> r.setCheckedOuted(true));
         store.getTables().stream().filter(t -> t.equals(table)).collect(Collectors.toList()).forEach(t -> t.setBooked(false));
         table.setBooked(false);
 

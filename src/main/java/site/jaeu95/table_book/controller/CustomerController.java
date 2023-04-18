@@ -7,13 +7,16 @@ import site.jaeu95.table_book.config.JwtAuthenticationProvider;
 import site.jaeu95.table_book.domain.common.UserVo;
 import site.jaeu95.table_book.domain.dto.CustomerDto;
 import site.jaeu95.table_book.domain.dto.ReservationDto;
+import site.jaeu95.table_book.domain.dto.ReviewDto;
 import site.jaeu95.table_book.domain.dto.StoreDto;
+import site.jaeu95.table_book.domain.form.AddReviewForm;
 import site.jaeu95.table_book.domain.form.BookTableForm;
 import site.jaeu95.table_book.domain.form.VisitTableForm;
 import site.jaeu95.table_book.domain.model.Customer;
 import site.jaeu95.table_book.exception.CustomException;
 import site.jaeu95.table_book.exception.ErrorCode;
 import site.jaeu95.table_book.service.CustomerService;
+import site.jaeu95.table_book.service.ReviewService;
 import site.jaeu95.table_book.service.StoreService;
 import site.jaeu95.table_book.service.TableService;
 
@@ -32,6 +35,7 @@ public class CustomerController {
     private final CustomerService customerService;
     private final TableService tableService;
     private final StoreService storeService;
+    private final ReviewService reviewService;
 
     /**
      * 고객 자신의 정보를 가져오는 메서드입니다.
@@ -77,5 +81,13 @@ public class CustomerController {
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
 
         return ResponseEntity.ok(ReservationDto.from(customerService.visitTable(form)));
+    }
+
+    @PostMapping("/addReview")
+    public ResponseEntity<ReviewDto> makeReview(@RequestHeader(name = "X-AUTH-TOKEN") String token, @RequestBody AddReviewForm form) {
+        UserVo userVo = provider.getUserVo(token);
+        customerService.findByIdAndPhone(userVo.getId(), userVo.getPhone())
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        return ResponseEntity.ok(ReviewDto.from(reviewService.addReview(form)));
     }
 }
