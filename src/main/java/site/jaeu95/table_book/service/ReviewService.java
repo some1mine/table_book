@@ -13,6 +13,9 @@ import site.jaeu95.table_book.domain.repository.StoreRepository;
 import site.jaeu95.table_book.exception.CustomException;
 import site.jaeu95.table_book.exception.ErrorCode;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
@@ -26,8 +29,8 @@ public class ReviewService {
         Customer customer = customerRepository.findById(form.getCustomerId())
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
 
-        if (customer.getReservations().stream().filter(Reservation::isCheckedOuted)
-                .anyMatch(reservation -> reservation.getStore().equals(store))) {
+        if (customer.getReservations().stream().filter(Reservation::isCheckOuted)
+                .noneMatch(reservation -> reservation.getStore().equals(store))) {
             throw new CustomException(ErrorCode.NOT_USER_RESERVATION);
         }
 
@@ -36,5 +39,17 @@ public class ReviewService {
         customer.getReviews().add(review);
 
         return review;
+    }
+
+    public List<Review> getReviewByCustomerId(Long customerId) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        return reviewRepository.findAllById(customer.getReviews().stream().map(Review::getId).collect(Collectors.toList()));
+    }
+
+    public List<Review> getReviewByStoreId(Long storeId) {
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_STORE));
+        return reviewRepository.findAllById(store.getReviews().stream().map(Review::getId).collect(Collectors.toList()));
     }
 }

@@ -90,4 +90,28 @@ public class CustomerController {
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         return ResponseEntity.ok(ReviewDto.from(reviewService.addReview(form)));
     }
+
+    @GetMapping("/getMyReviews")
+    public ResponseEntity<List<ReviewDto>> getMyReviews(@RequestHeader(name = "X-AUTH-TOKEN") String token) {
+        UserVo userVo = provider.getUserVo(token);
+        Customer customer = customerService.findByIdAndPhone(userVo.getId(), userVo.getPhone())
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        return ResponseEntity.ok(reviewService.getReviewByCustomerId(customer.getId()).stream().map(ReviewDto::from).collect(Collectors.toList()));
+    }
+
+    @GetMapping("/getMyReservation")
+    public ResponseEntity<List<ReservationDto>> getMyReservation(@RequestHeader(name = "X-AUTH-TOKEN") String token) {
+        UserVo userVo = provider.getUserVo(token);
+        Customer customer = customerService.findByIdAndPhone(userVo.getId(), userVo.getPhone())
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        return ResponseEntity.ok(customerService.getMyReservation(customer).stream().map(ReservationDto::from).collect(Collectors.toList()));
+    }
+
+    @GetMapping("/getStoreReviews/{id}")
+    public ResponseEntity<List<ReviewDto>> getStoreReviews(@RequestHeader(name = "X-AUTH-TOKEN") String token, @PathVariable Long id) {
+        UserVo userVo = provider.getUserVo(token);
+        customerService.findByIdAndPhone(userVo.getId(), userVo.getPhone())
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        return ResponseEntity.ok(reviewService.getReviewByStoreId(id).stream().map(ReviewDto::from).collect(Collectors.toList()));
+    }
 }

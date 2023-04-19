@@ -38,5 +38,5 @@ public class Reservation {
     private boolean expired;
     @EqualsAndHashCode.Exclude
     @ColumnDefault(value = "false")
-    private boolean checkedOuted;
+    private boolean checkOuted;
 }

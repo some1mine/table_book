@@ -15,6 +15,7 @@ import site.jaeu95.table_book.domain.repository.TableRepository;
 import site.jaeu95.table_book.exception.CustomException;
 import site.jaeu95.table_book.exception.ErrorCode;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -72,8 +73,8 @@ public class CustomerService {
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_USER_RESERVATION));
 
 
-        reservation.setCheckedOuted(true);
-        customer.getReservations().stream().filter(r -> r.equals(reservation)).collect(Collectors.toList()).forEach(r -> r.setCheckedOuted(true));
+        reservation.setCheckOuted(true);
+        customer.getReservations().stream().filter(r -> r.equals(reservation)).collect(Collectors.toList()).forEach(r -> r.setCheckOuted(true));
         store.getTables().stream().filter(t -> t.equals(table)).collect(Collectors.toList()).forEach(t -> t.setBooked(false));
         table.setBooked(false);
 
@@ -83,5 +84,10 @@ public class CustomerService {
         tableRepository.save(table);
 
         return reservation;
+    }
+
+    public List<Reservation> getMyReservation(Customer customer) {
+        return reservationRepository.findAll()
+                .stream().filter(reservation -> reservation.getCustomer().getId().equals(customer.getId())).collect(Collectors.toList());
     }
 }
